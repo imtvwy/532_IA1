@@ -1,6 +1,7 @@
 import pandas as pd
 import altair as alt
 from dash import Dash, dcc, html, Input, Output
+
 from vega_datasets import data
 
 alt.data_transformers.enable('data_server')
