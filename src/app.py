@@ -33,27 +33,31 @@ def plot_altair(fill):
     return chart.to_html()
         
 
+# Setup app and layout/frontend
 app = Dash(__name__)
+server = app.server
 
 app.layout = html.Div([
+
         dcc.Dropdown(
             id='fill', value='HA',
             options=[{'label': 'HA', 'value': 'HA'}, {'label': 'Sex', 'value': 'Sex'}, {'label': 'Age_Group', 'value': 'Age_Group'}],
-            style={'border-width': '0', 'width': '30%', 'height': '10px'}),
+            #style={'border-width': '0', 'width': '30%', 'height': '10px'}),
+            style={'width': '50%', 'display': 'inline-block'}),
+
 
         html.Iframe(
             id='line',
             style={'border-width': '0', 'width': '100%', 'height': '400px'},
             srcDoc=plot_altair('HA'))])
 
+# Set up callbacks/backend
 @app.callback(
     Output('line', 'srcDoc'),
     Input('fill', 'value'))
 def update_output(fill):
     return plot_altair(fill)
 
-
-print(df)
 
 if __name__ == '__main__':
     app.run_server(debug=True)
