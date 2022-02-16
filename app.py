@@ -2,16 +2,13 @@ import pandas as pd
 import altair as alt
 from dash import Dash, dcc, html, Input, Output
 
-from vega_datasets import data
-
-alt.data_transformers.enable('data_server')
 
 
 # read data
 df = pd.read_csv("case_data.csv")
 
-startDate="2021-01-01"
-endDate="2021-01-31" 
+startDate="2020-01-01"
+endDate="2020-03-31" 
 
 
 # filter by date
